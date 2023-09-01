@@ -1,0 +1,14 @@
+node_modules/
+yarn.lock
+tsconfig.json
+tsconfig.spec.json
+tsconfig.server.json
+tsconfig.admin.json
+.eslintignore
+.gitignore
+src/
+
+.idea/
+.github/
+.env
+*.log
