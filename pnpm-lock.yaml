@@ -20,6 +20,9 @@ dependencies:
   '@medusajs/file-local':
     specifier: ^1.0.2
     version: 1.0.2(medusa-interfaces@1.3.7)
+  '@medusajs/ui':
+    specifier: ^1.0.0
+    version: 1.0.0(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)
   '@tanstack/react-query':
     specifier: 4.22.0
     version: 4.22.0(react-dom@18.2.0)(react@18.2.0)
@@ -41,6 +44,9 @@ dependencies:
   medusa-interfaces:
     specifier: ^1.3.7
     version: 1.3.7
+  medusa-react:
+    specifier: ^9.0.4
+    version: 9.0.4(@medusajs/medusa@1.15.0)(@tanstack/react-query@4.22.0)(react-dom@18.2.0)(react@18.2.0)
   node-product-catalog-feed:
     specifier: ^1.0.0
     version: 1.0.0
@@ -53,9 +59,15 @@ dependencies:
   react-router-dom:
     specifier: ^6.13.0
     version: 6.13.0(react-dom@18.2.0)(react@18.2.0)
+  react-xml-viewer:
+    specifier: ^2.0.0
+    version: 2.0.0(react-dom@18.2.0)(react@18.2.0)
   typeorm:
     specifier: ^0.3.16
     version: 0.3.16(ioredis@5.3.2)(pg@8.11.3)
+  xml2js:
+    specifier: ^0.6.2
+    version: 0.6.2
 
 devDependencies:
   '@babel/core':
@@ -79,6 +91,9 @@ devDependencies:
   '@types/node':
     specifier: ^17.0.8
     version: 17.0.8
+  '@types/react':
+    specifier: ^18.2.21
+    version: 18.2.21
   cross-env:
     specifier: ^7.0.3
     version: 7.0.3
@@ -88,6 +103,9 @@ devDependencies:
   jest:
     specifier: ^27.3.1
     version: 27.3.1
+  medusa-core-utils:
+    specifier: ^1.2.0
+    version: 1.2.0
   mongoose:
     specifier: ^5.13.14
     version: 5.13.14
@@ -3433,8 +3451,8 @@ packages:
       '@lukeed/csprng': 1.1.0
     dev: false
 
-  /@medusajs/admin-ui@2.0.2-canary-20230831100806(@medusajs/medusa@1.15.0)(@types/node@17.0.8)(@types/react@18.2.21)(csstype@3.1.2)(esbuild@0.17.18)(eslint@6.8.0)(typescript@4.5.2):
-    resolution: {integrity: sha512-OCTXGCLKlY/dX9H8llCZHJTXk3/+BVfZXnqphOAlVz2/BVjpW4Uxc2EVdYGVmx2LzMGImNSv4HBN3OhLgsfUHw==}
+  /@medusajs/admin-ui@2.0.2(@medusajs/medusa@1.15.0)(@types/node@17.0.8)(@types/react@18.2.21)(csstype@3.1.2)(esbuild@0.17.18)(eslint@6.8.0)(typescript@4.5.2):
+    resolution: {integrity: sha512-S6foaSZkzQAgFCGlTWlXSpzmG7E4I0OSkpO2ot6KLRzO9N33phbDNK2etHw5Fmc7DuzOQI7lypME5C58y3i4ww==}
     dependencies:
       '@babel/parser': 7.22.5
       '@babel/traverse': 7.22.5
@@ -3544,7 +3562,7 @@ packages:
     peerDependencies:
       '@medusajs/medusa': ^1.14.0
     dependencies:
-      '@medusajs/admin-ui': 2.0.2-canary-20230831100806(@medusajs/medusa@1.15.0)(@types/node@17.0.8)(@types/react@18.2.21)(csstype@3.1.2)(esbuild@0.17.18)(eslint@6.8.0)(typescript@4.5.2)
+      '@medusajs/admin-ui': 2.0.2(@medusajs/medusa@1.15.0)(@types/node@17.0.8)(@types/react@18.2.21)(csstype@3.1.2)(esbuild@0.17.18)(eslint@6.8.0)(typescript@4.5.2)
       '@medusajs/medusa': 1.15.0(@babel/core@7.14.3)(@types/ioredis-mock@8.2.2)(medusa-interfaces@1.3.7)(typeorm@0.3.16)
       '@medusajs/ui': 0.0.0-snapshot-20230816100247(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)
       '@medusajs/ui-preset': 0.0.0-snapshot-20230816100247(tailwindcss@3.3.3)
@@ -7048,7 +7066,6 @@ packages:
 
   /@types/prop-types@15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
-    dev: false
 
   /@types/qs@6.9.8:
     resolution: {integrity: sha512-u95svzDlTysU5xecFNTgfFG5RUWu1A9P0VzgpcIiGZA9iraHOdSzcxMxQ55DyeRaGCSxQi7LxXDI4rzq/MYfdg==}
@@ -7068,7 +7085,6 @@ packages:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.3
       csstype: 3.1.2
-    dev: false
 
   /@types/resolve@1.20.2:
     resolution: {integrity: sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==}
@@ -7080,7 +7096,6 @@ packages:
 
   /@types/scheduler@0.16.3:
     resolution: {integrity: sha512-5cJ8CB4yAx7BH1oMvdU0Jh9lrEXyPkar6F9G/ERswkCuvP4KQZfZkSjcMbAICCpQTN4OuZn8tz0HiKv9TGZgrQ==}
-    dev: false
 
   /@types/send@0.17.1:
     resolution: {integrity: sha512-Cwo8LE/0rnvX7kIIa3QHCkcuF21c05Ayb0ZfxPiv0W8VRiZiNW/WuRupHKpqqGVGf7SUA44QSOUKaEd9lIrd/Q==}
@@ -8568,7 +8583,6 @@ packages:
 
   /csstype@3.1.2:
     resolution: {integrity: sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==}
-    dev: false
 
   /data-urls@2.0.0:
     resolution: {integrity: sha512-X5eWTSXO/BJmpdIKCRuKUgSCgAN0OwliVK3yPKbwIWU1Tdw5BRajxlzMidvh+gwko9AfQ9zIj52pzF91Q3YAvQ==}
@@ -9297,6 +9311,13 @@ packages:
 
   /fast-levenshtein@2.0.6:
     resolution: {integrity: sha512-DCXu6Ifhqcks7TZKY3Hxp3y6qphY5SJZmrWMDrKcERSOXWQdMhU9Ig/PYrzyw/ul9jOIyh0N4M0tbC5hodg8dw==}
+
+  /fast-xml-parser@4.2.7:
+    resolution: {integrity: sha512-J8r6BriSLO1uj2miOk1NW0YVm8AGOOu3Si2HQp/cSmo6EA4m3fcwu2WKjJ4RK9wMLBtg69y1kS8baDiQBR41Ig==}
+    hasBin: true
+    dependencies:
+      strnum: 1.0.5
+    dev: false
 
   /fastq@1.15.0:
     resolution: {integrity: sha512-wBrocU2LCXXa+lWBt8RoIRD89Fi8OdABODa/kEnyeyjS5aZO5/GNvI5sEINADqP/h8M29UHTHUb53sUu5Ihqdw==}
@@ -13168,6 +13189,19 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
+  /react-xml-viewer@2.0.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-UGgb9QqT4Qn6OtJgpxs+y8C7yY+Dpyh9n4WoJcc3RFLm/nn5uddLjhxlrxP9gPE78J1mxplYOvOabJUAJMs49Q==}
+    engines: {node: '>=12', npm: '>=5'}
+    peerDependencies:
+      react: '>= 16.8.4'
+      react-dom: '>= 16.8.4'
+    dependencies:
+      fast-xml-parser: 4.2.7
+      lodash: 4.17.21
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
   /react@15.7.0:
     resolution: {integrity: sha512-5/MMRYmpmM0sMTHGLossnJCrmXQIiJilD6y3YN3TzAwGFj6zdnMtFv6xmi65PHKRV+pehIHpT7oy67Sr6s9AHA==}
     engines: {node: '>=0.10.0'}
@@ -13492,6 +13526,10 @@ packages:
       sparse-bitfield: 3.0.3
     dev: true
     optional: true
+
+  /sax@1.2.4:
+    resolution: {integrity: sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==}
+    dev: false
 
   /saxes@5.0.1:
     resolution: {integrity: sha512-5LBh1Tls8c9xgGjw3QrMwETmTMVk0oFgvrFSvWx62llR2hcEInrKNZ2GZCCuuy2lvWrdl5jhbpeqc5hRYKFOcw==}
@@ -13936,6 +13974,10 @@ packages:
   /strip-json-comments@3.1.1:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
     engines: {node: '>=8'}
+
+  /strnum@1.0.5:
+    resolution: {integrity: sha512-J8bbNyKKXl5qYcR36TIO8W3mVGVHrmmxsd5PAItGkmyzwJvybiw2IVq5nqd0i4LSNSkB/sx9VHllbfFdr9k1JA==}
+    dev: false
 
   /style-loader@3.3.3(webpack@5.88.2):
     resolution: {integrity: sha512-53BiGLXAcll9maCYtZi2RCQZKa8NQQai5C4horqKyRmHj9H7QmcUyucrH+4KW/gBQbXM2AsB0axoEcFZPlfPcw==}
@@ -15001,6 +15043,19 @@ packages:
   /xml-name-validator@3.0.0:
     resolution: {integrity: sha512-A5CUptxDsvxKJEU3yO6DuWBSJz/qizqzJKOMIfUJHETbBw/sFaDxgd6fxm1ewUaM0jZ444Fc5vC5ROYurg/4Pw==}
     dev: true
+
+  /xml2js@0.6.2:
+    resolution: {integrity: sha512-T4rieHaC1EXcES0Kxxj4JWgaUQHDk+qwHcYOCFHfiwKz7tOVPLq7Hjq9dM1WCMhylqMEfP7hMcOIChvotiZegA==}
+    engines: {node: '>=4.0.0'}
+    dependencies:
+      sax: 1.2.4
+      xmlbuilder: 11.0.1
+    dev: false
+
+  /xmlbuilder@11.0.1:
+    resolution: {integrity: sha512-fDlsI/kFEx7gLvbecc0/ohLG50fugQp8ryHzMTuW9vSa1GJ0XYWKnhsUx7oie3G98+r56aTQIUB4kht42R3JvA==}
+    engines: {node: '>=4.0'}
+    dev: false
 
   /xmlbuilder@15.1.1:
     resolution: {integrity: sha512-yMqGBqtXyeN1e3TGYvgNgDVZ3j84W4cwkOXQswghol6APgZWaff9lnbvN7MHYJOiXsvGPXtjTYJEiC9J2wv9Eg==}

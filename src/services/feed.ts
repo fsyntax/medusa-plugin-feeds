@@ -28,7 +28,6 @@ class FeedService extends TransactionBaseService {
 
         // Loop through each parent product.
         for (const parentProduct of products) {
-            console.log(parentProduct);
             // Create a new FeedProduct for the parent.
             const parentFeedProduct = new FeedProduct();
             parentFeedProduct.id = parentProduct.id;

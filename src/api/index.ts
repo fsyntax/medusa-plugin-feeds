@@ -1,8 +1,20 @@
-import { Router } from "express";
+import { Router, Request, Response } from "express";
+import xml2js from 'xml2js';
+import { getConfigFile } from "medusa-core-utils"
+import { ConfigModule } from "@medusajs/medusa/dist/types/global"
+import cors from "cors"
 
-export default (rootDirectory, options) => {
+const router: (rootDirectory: string, options: any) => Router = (rootDirectory, options) => {
     const router = Router();
-    router.get("/feed", async (req, res) => {
+    const { configModule } = getConfigFile<ConfigModule>(rootDirectory, "medusa-config")
+    const { projectConfig } = configModule
+
+    const adminCorsOptions = {
+        origin: projectConfig.admin_cors.split(","),
+        credentials: true,
+    }
+
+    const handleFeed = async (req: Request, res: Response, format: 'xml' | 'json', isAdmin: boolean = false) => {
         try {
             const feedService = req.scope.resolve("feedService");
 
@@ -12,15 +24,37 @@ export default (rootDirectory, options) => {
 
             const xml = await feedService.createFeed();
 
-            res.set('Content-Type', 'text/xml');
-            res.send(xml);
+            if (format === 'xml') {
+                res.set('Content-Type', 'text/xml');
+                res.send(xml);
+            } else {
+                xml2js.parseString(xml, (err, result) => {
+                    if (err) {
+                        console.error(err);
+                        return res.status(500).send("Error converting XML to JSON.");
+                    }
+                    res.json(result);
+                });
+            }
+
             return;
         } catch (error) {
             console.error(error);
             res.status(500).send("An error occurred while generating the feed.");
             return;
         }
-    });
+    };
+
+    router.get("/feed/xml", async (req, res, next) => handleFeed(req, res, 'xml'));
+    router.get("/feed/json", async (req, res, next) => handleFeed(req, res, 'json'));
+
+    router.options("/admin/feed/xml", cors(adminCorsOptions))
+    router.get("/admin/feed/xml",  cors(adminCorsOptions), async (req, res, next) => handleFeed(req, res, 'xml', true));
+
+    router.options("/admin/feed/json", cors(adminCorsOptions))
+    router.get("/admin/feed/json",  cors(adminCorsOptions), async (req, res, next) => handleFeed(req, res, 'json', true));
 
     return router;
 };
+
+export default router;
