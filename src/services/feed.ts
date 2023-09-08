@@ -5,7 +5,7 @@ import {
     ProductVariantService,
     ProductVariant
 } from "@medusajs/medusa";
-import { Product as FeedProduct, ProductPrice, FeedBuilder } from 'node-product-catalog-feed';
+import { Product as FeedProduct, FeedBuilder } from 'node-product-catalog-feed';
 
 class FeedService extends TransactionBaseService {
     private productService: ProductService;
@@ -21,13 +21,12 @@ class FeedService extends TransactionBaseService {
     }
 
     async createFeed() {
-        // 1. Get all parent products.
+        //  Get all parent products.
         const products: MedusaProduct[] = await this.productService.list({});
 
-        // 2. Initialize an empty array to hold feed products.
         const feedProducts = [];
 
-        // 3. Loop through each parent product.
+        // Loop through each parent product.
         for (const parentProduct of products) {
             console.log(parentProduct);
             // Create a new FeedProduct for the parent.
@@ -51,7 +50,7 @@ class FeedService extends TransactionBaseService {
                 variantFeedProduct.link = `${this.pathToProduct}${parentProduct.handle}`;
                 variantFeedProduct.condition = parentFeedProduct.condition;
                 variantFeedProduct.availability = variant.allow_backorder ? variant.inventory_quantity > 0 ? 'in_stock' : 'backorder' : variant.inventory_quantity > 0 ? 'in_stock' : 'out_of_stock';
-                variantFeedProduct._item_group_id = parentFeedProduct.id;
+                variantFeedProduct.itemGroupId = parentFeedProduct.id;
                 feedProducts.push(variantFeedProduct);
             }
         }
