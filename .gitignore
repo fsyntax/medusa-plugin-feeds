@@ -4,7 +4,13 @@ dist/
 .DS_Store
 
 node_modules/
-
+build
+.cache
+yalc.lock
+yarn.lock
+package-lock.json
+pnpm-lock.yaml
 .github/
 .idea/
 .eslintignore
+

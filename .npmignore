@@ -7,7 +7,8 @@ tsconfig.admin.json
 .eslintignore
 .gitignore
 src/
-
+.cache
+build
 .idea/
 .github/
 .env
