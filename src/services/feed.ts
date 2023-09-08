@@ -21,14 +21,13 @@ class FeedService extends TransactionBaseService {
     }
 
     async createFeed() {
-        //  Get all parent products.
+
         const products: MedusaProduct[] = await this.productService.list({});
 
         const feedProducts = [];
 
-        // Loop through each parent product.
         for (const parentProduct of products) {
-            // Create a new FeedProduct for the parent.
+
             const parentFeedProduct = new FeedProduct();
             parentFeedProduct.id = parentProduct.id;
             parentFeedProduct.title = parentProduct.title;
