@@ -1,7 +1,7 @@
 import { useAdminCustomQuery } from 'medusa-react';
 import { FeedQuery, FeedResponse } from '../types/table';
 import { Container, Heading } from '@medusajs/ui';
-import XMLViewer from 'react-xml-viewer/dist/components/XMLViewer';
+import XMLViewer from 'react-xml-viewer';
 
 const FeedXmlView: React.FC = () => {
   const { data, isLoading } = useAdminCustomQuery<FeedQuery, FeedResponse>(
