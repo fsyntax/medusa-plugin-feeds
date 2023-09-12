@@ -1,60 +1,48 @@
-import { Router, Request, Response } from "express";
-import xml2js from 'xml2js';
-import { getConfigFile } from "medusa-core-utils"
-import { ConfigModule } from "@medusajs/medusa/dist/types/global"
-import cors from "cors"
+import { Router } from 'express';
+import { getConfigFile } from 'medusa-core-utils';
+import { ConfigModule } from '@medusajs/medusa/dist/types/global';
+import cors from 'cors';
+import { handleFeed } from './libs/feeds';
+import { attachFeedRoutes } from './feed';
 
-const router: (rootDirectory: string, options: any) => Router = (rootDirectory, options) => {
-    const router = Router();
-    const { configModule } = getConfigFile<ConfigModule>(rootDirectory, "medusa-config")
-    const { projectConfig } = configModule
+const router: (rootDirectory: string, options: any) => Router = (
+  rootDirectory,
+  options
+) => {
+  const router = Router();
+  const { configModule } = getConfigFile<ConfigModule>(
+    rootDirectory,
+    'medusa-config'
+  );
+  const { projectConfig } = configModule;
 
-    const adminCorsOptions = {
-        origin: projectConfig.admin_cors.split(","),
-        credentials: true,
-    }
+  const adminCorsOptions = {
+    origin: projectConfig.admin_cors.split(','),
+    credentials: true,
+  };
 
-    const handleFeed = async (req: Request, res: Response, format: 'xml' | 'json', isAdmin: boolean = false) => {
-        try {
-            const feedService = req.scope.resolve("feedService");
+  const feedRouter = Router();
 
-            if (!feedService) {
-                return res.status(500).send("Feed Service not resolved.");
-            }
+  router.use('/feed', feedRouter);
 
-            const xml = await feedService.createFeed();
+  attachFeedRoutes(feedRouter);
 
-            if (format === 'xml') {
-                res.set('Content-Type', 'text/xml');
-                res.send(xml);
-            } else {
-                xml2js.parseString(xml, (err, result) => {
-                    if (err) {
-                        console.error(err);
-                        return res.status(500).send("Error converting XML to JSON.");
-                    }
-                    res.json(result);
-                });
-            }
+  router.options('/admin/feed/xml', cors(adminCorsOptions));
+  router.options('/admin/feed/json', cors(adminCorsOptions));
 
-            return;
-        } catch (error) {
-            console.error(error);
-            res.status(500).send("An error occurred while generating the feed.");
-            return;
-        }
-    };
+  router.get(
+    '/admin/feed/xml',
+    cors(adminCorsOptions),
+    async (req, res, next) => handleFeed(req, res, 'xml', true)
+  );
 
-    router.get("/feed/xml", async (req, res, next) => handleFeed(req, res, 'xml'));
-    router.get("/feed/json", async (req, res, next) => handleFeed(req, res, 'json'));
+  router.get(
+    '/admin/feed/json',
+    cors(adminCorsOptions),
+    async (req, res, next) => handleFeed(req, res, 'json', true)
+  );
 
-    router.options("/admin/feed/xml", cors(adminCorsOptions))
-    router.get("/admin/feed/xml",  cors(adminCorsOptions), async (req, res, next) => handleFeed(req, res, 'xml', true));
-
-    router.options("/admin/feed/json", cors(adminCorsOptions))
-    router.get("/admin/feed/json",  cors(adminCorsOptions), async (req, res, next) => handleFeed(req, res, 'json', true));
-
-    return router;
+  return router;
 };
 
 export default router;
