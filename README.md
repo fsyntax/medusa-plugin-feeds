@@ -18,7 +18,7 @@ The last two endpoints are used internally by the admin panel to fetch the feeds
 
 To enable Admin UI extensions, please add the below into your plugins object inside medusa-config.js
 
-` { resolve: ``medusa-plugin-feeds``, options: { enableUI: true } }, `
+`{ resolve: 'medusa-plugin-feeds', options: { enableUI: true } }`,
 
 ## Contributing
 
