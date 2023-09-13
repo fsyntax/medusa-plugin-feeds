@@ -5,19 +5,20 @@ This is a plugin for MedusaJS designed to create basic Shopping feeds for Google
 ## Features
 
 - Exposes custom endpoints to fetch feeds in XML or JSON format:
-    - `/feed/xml`
-    - `/feed/json`
-    - `/admin/feed/xml`
-    - `/admin/feed/json`
+  - `/feed/xml`
+  - `/feed/json`
+  - `/admin/feed/xml`
+  - `/admin/feed/json`
 
 The last two endpoints are used internally by the admin panel to fetch the feeds.
 
 ## Usage
 
-
 ### Plugin Options
 
-To enable Admin UI extensions, set the `enableUI` option to `true` in the plugin options.
+To enable Admin UI extensions, please add the below into your plugins object inside medusa-config.js
+
+`{ resolve: 'medusa-plugin-feeds', options: { enableUI: true } }`,
 
 ## Contributing
 

@@ -21,7 +21,7 @@
     "prepare": "cross-env NODE_ENV=production pnpm run build:server && medusa-admin bundle",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "publishL": "yalc publish --push"
+    "publishL": "rm -r .yalc && rm -r dist && yalc publish --push"
   },
   "dependencies": {
     "@medusajs/admin": "^7.0.1",
