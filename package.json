@@ -37,7 +37,6 @@
     "dotenv": "16.0.3",
     "express": "^4.17.2",
     "medusa-interfaces": "^1.3.7",
-    "medusa-plugin-feeds": "file:.yalc/medusa-plugin-feeds",
     "medusa-react": "^9.0.4",
     "node-product-catalog-feed": "^1.0.0",
     "prism-react-renderer": "^2.0.4",
